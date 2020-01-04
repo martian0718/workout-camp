@@ -19,7 +19,7 @@ var commentRoutes = require("./routes/comments"),
     indexRoutes   = require("./routes/index");
 
 //seedDB(); //seed the database
-mongoose.connect("mongodb://localhost:27017/workout_camp", {useNewUrlParser: true, useUnifiedTopology: true});
+mongoose.connect("mongodb+srv://martian0718:Martian0718@cluster0-q4yhz.mongodb.net/workout_camp?retryWrites=true&w=majority", {useNewUrlParser: true, useUnifiedTopology: true});
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs"); //allows us to not have to write ejs after every ejs file
 app.use(express.static(__dirname + "/public"));//includes files in public 
