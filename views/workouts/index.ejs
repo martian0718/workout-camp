@@ -1,0 +1,39 @@
+<%- include("../partials/header") %>
+
+
+    <header class = "jumbotron">
+        <div class = "container">
+            <h1>Welcome to WorkoutCamp!</h1>
+            <p>View all workouts that our community has completed</p>
+            <p>
+                <a class = "btn btn-primary btn-lg" href="/workouts/new">Add new workout</a>
+            </p>
+        </div>
+    </header>
+
+    <div class = "row" style = "display: flex; flex-wrap: wrap;">
+        <div class = "card-group">
+            <% workouts.forEach(function(workout){%>
+                <div class = "col-md-3 col-sm-6 d-flex">
+                    <div class = "card mb-3 flex-fill d-flex flex-column align-items-start">
+                        <div class = "card-title mt-3 ml-3">
+                            <a class = "h4" style = "color: black;" href = "/workouts/<%=workout._id%>"><%=workout.name%></a>
+                            <h6><em><%=workout.typeOfWorkout%></em></h6>
+                        </div>
+                        <p class = "card-text mb-3 px-3">
+                            <%=workout.description%>
+                        </p>
+                        <p class = "ml-3 mt-auto">
+                            <a href="/workouts/<%=workout._id%>" class = "btn btn-primary">LET'S WORK</a>
+                        </p>
+                        <p class = "text-left ml-3 mt-auto"><b>Workout by</b> <a href="/users/<%=workout.author.id%>" style = "color: black;"><%=workout.author.username%></a></p>
+                    </div>
+                </div>
+            <%});%>
+        </div>
+    </div>
+    
+
+
+
+<%- include("../partials/footer") %>

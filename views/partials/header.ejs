@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+    <head>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>WorkoutCamp</title>
+        
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/stylesheets/main.css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    </head>
+    <body>
+
+      <nav id = "navbar" class="navbar navbar-default navbar-expand-md navbar-light sticky-top">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="/">WorkoutCamp</a>
+
+                <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class = "navbar-toggler-icon">
+                    <i class = "fas fa-bar"></i>
+                  </span>
+                </button>
+            </div>
+            <div id="navbarSupportedContent" class="collapse navbar-collapse">
+              <ul class="nav navbar-nav">
+                <li class="<%= typeof page !== 'undefined' && page === 'workouts' ? 'active' : '' %>"><a href="/workouts">Discover</a></li>
+              </ul>
+              <ul class="nav navbar-nav ml-auto">
+                  <% if(!currentUser){ %>
+                      <li class="<%= typeof page !== 'undefined' && page === 'login' ? 'active' : '' %> px-3"><a href="/login">Login</a></li>
+                      <li class="<%= typeof page !== 'undefined' && page === 'register' ? 'active' : '' %> px-3"><a href="/register">Sign Up</a></li>
+                  <% } else { %>
+                      <li class = "px-3"><a href="/users/<%=currentUser._id%>">Signed In As <%= currentUser.username %></a></li>
+                      <li class = "px-4"><a href="/logout">Logout</a></li>
+                  <% } %>
+              </ul>
+            </div>
+        </div>
+    </nav>
+
+
+          <div class = "container mt-3">
+            <%if(error && error.length > 0){%>
+              <div class = "alert alert-danger" role = "alert">
+                <%=error%>
+              </div>
+            <%}%>
+            <%if(success && success.length > 0){%>
+              <div class = "alert alert-success" role = "alert">
+                <%=success%>
+              </div>
+            <%}%>
+          </div>
+
+          <div class = "container">
+          

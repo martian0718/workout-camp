@@ -1,0 +1,42 @@
+.workoutPicture {
+    height: 100%;
+    width: 100%;
+}
+
+.caption-full {
+    padding: 9px;
+}
+
+#delete-form{
+    display: inline
+}
+
+body {
+    background-color: #f0f3f5;
+}
+
+li a {
+    color: black;
+}
+
+.ending {
+    bottom: 0;
+    right: 0;
+    left: 0;
+    
+}
+
+.profilePic {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    display: block;
+    flex: 0 0 auto; 
+    overflow: hidden;
+    box-sizing: border-box;
+    
+}
+
+#navbar {
+    background-color: white;
+}

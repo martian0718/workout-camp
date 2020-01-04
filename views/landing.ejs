@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>WorkoutCamp</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css" rel="stylesheet">
+        <link rel="stylesheet" href="/stylesheets/landing.css">
+    </head>
+    <body>
+
+      <nav class="navbar navbar-default navbar-expand-md navbar-light sticky-top" id = "navbar">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="/">WorkoutCamp</a>
+
+                <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class = "navbar-toggler-icon">
+                    <i class = "fas fa-bar"></i>
+                  </span>
+                </button>
+            </div>
+            <div id="navbarSupportedContent" class="collapse navbar-collapse">
+              <ul class="nav navbar-nav">
+                <li class=""><a href="/workouts">Discover</a></li>
+              </ul>
+              <ul class="nav navbar-nav ml-auto">
+                  <% if(!currentUser){ %>
+                      <li class="px-3"><a href="/login">Login</a></li>
+                      <li class="px-3"><a href="/register">Sign Up</a></li>
+                  <% } else { %>
+                      <li class = "px-3"><a href="/users/<%=currentUser._id%>">Signed In As <%= currentUser.username %></a></li>
+                      <li class = "px-4"><a href="/logout">Logout</a></li>
+                  <% } %>
+              </ul>
+            </div>
+        </div>
+    </nav>
+        <!--For alerts when necessary-->
+        <div class = "container">
+            <%if(error && error.length > 0){%>
+                <div class = "alert alert-danger" role = "alert">
+                  <%=error%>
+                </div>
+              <%}%>
+              <%if(success && success.length > 0){%>
+                <div class = "alert alert-success" role = "alert">
+                  <%=success%>
+                </div>
+              <%}%>
+        </div>
+
+        
+
+      
+            <div id = "landing-header" class="d-flex justify-content-center">
+            
+                <h1 class = "p-5 my-auto">Welcome to WorkoutCamp</h1>
+                <a href="/workouts" class = "btn btn-lg btn-success my-auto">View all Workouts</a>
+              
+            </div>
+        
+          <div class = "row">
+            <div class = "col-md-7 text-center mt-5">
+
+              <h2>What is WorkoutCamp?</h2>
+              <h4 class = "mt-5 mx-5 px-5">WorkoutCamp is a platform for people who love to workout or want to start working out! Members can share their workouts to the community
+                to help others find motivation for fitness or just to see what other members are doing to get gains.
+              </h4>
+
+              <div class = "row mt-5 pt-5">
+                <div class = "col-md-4 pb-5">
+                  <i class="fas fa-share fa-5x mb-5"></i>
+                  <p class = "mx-5">WorkoutCamp makes it easy to share workouts with your friends and family</p>
+                </div>
+                <div class = "col-md-4 pb-5">
+                  <i class="fas fa-comment fa-5x mb-5"></i>
+                  <p class = "mx-5">You can give feedback and your opinions on other people's workouts to help improve their regime</p>
+                </div>
+                <div class = "col-md-4 pb-5">
+                  <i class = "fas fa-dumbbell fa-5x mb-5"></i>
+                  <p class = "mx-5">With workouts provided by others, it makes it easier for you to start your fitness journey</p>
+                </div>
+              </div>
+
+              <div class = "row my-5 py-5">
+                <div class = "col-md-12 text-center">
+                  <p class = "h4">Current Features of WorkoutCamp</p>
+                  <ul class = "list-group list-group-flush mx-5 px-5">
+                    <li class = "list-group-item">Upload Workouts as images</li>
+                    <li class = "list-group-item">Comment on other's Workouts</li>
+                    <li class = "list-group-item">Find Swimming & Weightlifting Workouts</li>
+                    <li class = "list-group-item">Plus more Features to come later!!!</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class = "col-md-5 mt-5 border-left">
+              <div style="width: 50%; margin: 25px auto;">
+                <h1 style="text-align: center">Sign Up Here!</h1>
+                <form action="/register" method="POST">
+                    <div class="form-group">
+                        <label for="firstName">First Name</label>
+                        <input class="form-control" id = "firstName" type="text" name="firstName" placeholder="First Name">
+                    </div>
+                    <div class="form-group">
+                        <label for="lastName">Last Name</label>
+                        <input class="form-control" id = "lastName" type="text" name="lastName" placeholder="Last Name">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input class="form-control" id = "email" type="email" name="email" placeholder="email">
+                    </div>
+                    <div class="form-group">
+                        <label for="username">Username</label>
+                        <input class="form-control" id = "username" type="text" name="username" placeholder="username">
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input class="form-control" id = "password" type="password" name="password" placeholder="password">
+                    </div>
+                    <div class = "form-group">
+                        <label for="profilePicture">Profile Picture</label>
+                        <input class = "form-control" id = "profilePicture" type="text" name = "avatar" placeholder="profile picture url">
+                    </div>
+                    <div class = "form-group">
+                        <label for="bio">Bio</label>
+                        <textarea class = "form-control" name="bio" id="bio" cols="30" rows="5" placeholder = "bio..."></textarea>
+        
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-lg btn-primary btn-block">Sign Up!</button>
+                    </div>
+                </form>
+            </div>
+            </div>
+          </div>
+            
+
+          
+            
+
+
+ 
+
+
+
+
+<%- include("./partials/footer") %>

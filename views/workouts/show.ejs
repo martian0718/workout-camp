@@ -1,0 +1,62 @@
+<%- include("../partials/header") %>
+
+
+    <div class = "row">
+        <div class = "col-md-3">
+            <p class = "lead">WorkoutCamp</p>
+            <!--list group-->
+            <div class = "list-group">
+                <li class = "list-group-item" style = "text-transform: uppercase;">Workout provided by <%=workout.author.username%></li>
+                <li class = "list-group-item"><%=workout.typeOfWorkout%></li>
+                <li class = "list-group-item" style = "text-transform: uppercase;"> <a href="/users/<%=workout.author.id%>">Visit <%=workout.author.username%>'s profile</a></li>
+            </div>
+        </div>
+
+        <div class = "col-md-9">
+            <div class = "thumbnail">
+                <img class = "img-responsive workoutPicture" src="<%=workout.image%>" alt="">
+                <div class = "caption-full">
+                    
+                    <h4 style = "float: left;"><%= workout.name %></h4>
+                    <h4 style = "text-align: right;"><%=workout.typeOfWorkout%></h4>
+                    <p><%=workout.description%></p>
+                    <p><em>Workout provided by <a href="/users/<%=workout.author.id%>"><%=workout.author.username%></a>, <%=moment(workout.createdAt).fromNow()%></em></p>
+                    <%if(currentUser && workout.author.id.equals(currentUser._id)){%>
+                        <a class = "btn btn-warning btn-sm" href="/workouts/<%=workout._id%>/edit">Edit</a>
+                        <form id = "delete-form"action="/workouts/<%=workout._id%>?_method=DELETE" method = "POST">
+                            <button class = "btn btn-danger btn-sm">Delete</button>
+                        </form>
+                    <%}%>
+                    
+                </div>
+            </div>
+            <div class = "well">
+                <div class = "text-right">
+                    <a class = "btn btn-success" href="/workouts/<%=workout._id%>/comments/new">Add New Comment</a>
+                </div>
+                <hr>
+                <% workout.comments.forEach(function(comment){%>
+                    <div class = "row">
+                        <div class = "col-md-12">
+                            <h4><%=comment.author.username%></h4>
+                            <span class = "pull-right"><%=moment(comment.createdAt).fromNow()%></span>
+                            <p>
+                                <%=comment.text%>
+                           </p>
+                           <%if(currentUser && comment.author.id.equals(currentUser._id)){%>
+                            <form action="/workouts/<%=workout._id%>/comments/<%=comment._id%>?_method=DELETE" method = "POST">
+                                <input type = "submit" value = "Delete" class = "btn btn-danger btn-sm">
+                           </form>
+                           <%}%>
+                           
+                          
+                        </div>
+                    </div>
+                <%});%>
+
+            </div>
+        </div>
+    </div>
+
+
+<%- include("../partials/footer") %>

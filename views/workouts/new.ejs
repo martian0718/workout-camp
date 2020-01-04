@@ -1,0 +1,39 @@
+<%- include("../partials/header") %>
+
+
+    
+
+    <div class = "row">
+        <div style = "width: 30%; margin: 30px auto;">
+            <h1 style = "text-align: center">Create a new workout</h1>
+            <form action="/workouts" method = "Post" enctype="multipart/form-data">
+                <div class = "form-group">
+                    <input class = "form-control" type="text" placeholder = "name" name = "workout[name]">
+                </div>
+                <div class = "form-group">
+                    <select class = "form-control" name="workout[typeOfWorkout]">
+                        <option value="SWIMMING">Swimming</option>
+                        <option value="WEIGHTS">Weights</option>
+                    </select>
+                </div>
+                <div class = "form-group">
+                    <label for="image">Workout</label>
+                    <input class = "form-control" id = "image" type="file" accept = "image/*" name = "image" required>
+                </div>
+                <div class = "form-group">
+                    <input class = "form-control" type="text" placeholder = "description" name = "workout[description]">
+                </div>
+                <div class = "form-group">
+                    <button class = "btn btn-lg btn-primary btn-block">Submit!</button>
+                </div>
+                
+            </form>
+        </div>
+    </div>
+    <div class = "row text-align-center">
+
+        <a href="/workouts">Go back</a>
+    </div>
+    
+
+<%- include("../partials/footer") %>
